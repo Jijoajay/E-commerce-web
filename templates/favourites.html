@@ -1,0 +1,40 @@
+<title>ChelCi | Favourites</title>
+{% include "base.html"%}
+<style>
+     .cart-page{
+    height:100vh;
+    cursor:pointer;
+    background-color: rgba(0,0,0, 0.5);
+    }
+    tr td .img{
+    height= 100px;
+    width=  200px;
+    }
+</style>
+<section class="cart-page">
+    <table class="table table-hover">
+ <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">current price</th>
+      <th scope="col">Original price</th>
+      <th></th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for post in all_post%}
+    <tr>
+      <td>{{post.product_name}}</td>
+      <td>{{post.product_price}}</td>
+      <td>{{post.original_price}}</td>
+      <td><a href="{{url_for('cart_add',post_id=post.id)}}">Add to cart</a></td>
+      <td><a href="{{ url_for('favor_delete',post_id=post.id) }}">delete</a></td>
+
+    </tr>
+     {% endfor %}
+
+  </tbody>
+</table>
+</section>
+

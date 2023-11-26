@@ -1,0 +1,42 @@
+{% from bootstrap5/form.html import render_form %}
+<title>ChelCi | edit</title>
+{% include "base.html" %}
+<style>
+    section{
+    display:flex;
+    justify-content:center;
+    align-item :center;
+    color:white;
+    background-color: rgba(0,0,0, 0.5);
+    height:100vh;
+ }
+  .main{
+  margin-top:200px;
+ }
+ h2{
+ text-align:center;
+ color:white;
+
+ }
+</style>
+<section>
+  <main class="mb-4 main" >
+  <div class="container">
+    <div class="row">
+      <h2>Product Adding Form</h2>
+<!--       Adding Flash message here for users trying to register twice -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <p class="flash">{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!--Rendering login form here-->
+        {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+      </div>
+    </div>
+  </div>
+</main>
+</section>

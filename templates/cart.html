@@ -1,0 +1,47 @@
+<title> ChelCi | Cart</title>
+{% include "base.html" %}
+<style>
+    .cart-page{
+    height:100vh;
+    cursor:pointer;
+    background-color: rgba(0,0,0, 0.5);
+    }
+</style>
+<section class="cart-page">
+    <table class="table table-hover">
+ <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">total_price</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for post in cart %}
+    <tr>
+        <td>{{ post.product_name }}</td>
+        <td>{{ post.product_price }}</td>
+        <td>{{ post.quantity }}</td>
+        <td>{{ post.quantity * post.product_price }}</td>
+        <td><a href="{{url_for('cart_delete',post_id = post.id)}}">delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+     <tfoot>
+     <tr>
+        <td></td>
+        <td></td>
+        <td>Total Amount</td>
+        <td>{{ total_amount }}</td>
+        <td><a href="{{ url_for('checkout_session') }}" class="btn btn-primary">Make Payment</a></td>
+    </tr>
+     </tfoot>
+
+
+
+
+</table>
+</section>

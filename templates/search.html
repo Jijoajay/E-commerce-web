@@ -1,0 +1,36 @@
+{% include "base.html" %}
+
+<!--<h2>you searched for.....{{searched}}</h2>-->
+<section class="w-100  p-4" style="background-color: #eee; border-radius: .5rem .5rem 0 0;">
+      <h4 class="text-center mb-5"><strong>{{search}}</strong></h4>
+        {% for post in searched %}
+      <div class="row text-center">
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="card">
+            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+              <img src={{post.img_url}} class="w-100">
+              <a href="#!">
+                <div class="mask">
+                  <div class="d-flex justify-content-start align-items-end h-100">
+                    <h5><span class="badge bg-primary ms-2">New</span></h5>
+                  </div>
+                </div>
+                <div class="hover-overlay">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+              </a>
+            </div>
+            <div class="card-body">
+              <a href="" class="text-reset">
+                <h5 class="card-title mb-3">{{post.product_name}}</h5>
+              </a>
+              <a href="" class="text-reset">
+                <p>{{post.category}}</p>
+              </a>
+              <h6 class="mb-3">{{post.product_price}}</h6>
+            </div>
+          </div>
+        </div>
+          </div>
+            {% endfor %}
+    </section>

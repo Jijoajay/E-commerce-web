@@ -1,0 +1,34 @@
+{% from "bootstrap5/form.html" import render_form %}
+<title> ChelCi | product </title>
+{% include "base.html" %}
+
+<style>
+  .favor{
+  height:100vh;
+  width:100vw;
+  margin-right: 50px;
+  margin-left:50px
+  }
+</style>
+<section class="favor">
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{post.img_url}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{post.product_name}}</h1>
+          <h3 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Offer price: {{post.product_price}}</h3><h3>original price :<del>{{post.original_price}}</del></h3>
+        <p class="lead">Designed specifically for sport and other physical activities</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <form method="POST" action="{{ url_for('view', post_id=post.id) }}">
+              <label>Quantity</label>
+              <input type="number" name="quantity" value="1">
+            <button type="button" class="btn btn-outline-info btn-lg px-4" onclick="window.location.href='{{url_for('add_to_favor',post_id= post.id )}}'">Add to Favourites</button>
+            <button type="button" class="btn btn-outline-info btn-lg px-4" onclick="window.location.href='{{url_for('cart_add',post_id= post.id )}}'">Add to Cart</button>
+           </form>
+      </div>
+    </div>
+  </div>
+</section>

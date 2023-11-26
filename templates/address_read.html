@@ -1,0 +1,29 @@
+{% include "base.html" %}
+<style>
+section{
+color:white;
+}
+</style>
+<section>
+    <div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <!-- Post preview-->
+      {% for post in users_address %}
+      <div class="post-preview">
+          <h2 class="post-title">{{ post.first_name }}</h2>
+          <h3 class="post-subtitle">{{ post.last_name }}</h3>
+          <h2 class="post-title">{{ post.street_address}}</h2>
+          <h3 class="post-subtitle">{{ post.city }}</h3>
+          <h2 class="post-title">{{ post.state }}</h2>
+          <h3 class="post-subtitle">{{ post.pincode }}</h3>
+      </div>
+      <a href="{{url_for('address_edit',post_id = post.id)}}">edit</a>
+      <a href="{{url_for('address_delete',post_id = post.id)}}">delete</a>
+              {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+

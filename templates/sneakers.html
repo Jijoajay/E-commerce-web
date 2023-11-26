@@ -1,0 +1,114 @@
+<title> ChelCi | shoes </title>
+{% include "base.html" %}
+<style>
+section{
+background-color: rgba(0,0,0, 0.5);
+height:200vh;
+color:white;
+}
+.row{
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr 1fr;
+gap:25px;
+margin-left: 30px;
+margin-right:30px
+margin-top:50px
+
+}
+.product{
+margin-top:100px
+align-items:center;
+width:100%
+}
+.products img{
+align-items:center;
+}
+.bar{
+
+height:15vh;
+}
+</style>
+<main>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+      {{message}}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Example headline.</h1>
+            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>One more for good measure.</h1>
+            <p>Some representative placeholder content for the third slide of this carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<header class="d-flex justify-content-center align-items-center py-3 bar">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{{url_for('product')}}" class="nav-link" aria-current="page">All</a></li>
+        <li class="nav-item"><a href="#" class="nav-link active">Sneakers</a></li>
+        <li class="nav-item"><a href="{{url_for('high_tops')}}" class="nav-link ">High-tops</a></li>
+        <li class="nav-item"><a href="{{url_for('sports')}}" class="nav-link">Running</a></li>
+      </ul>
+    </header>
+<section >
+  <div class="row">
+      {% for post in all_post%}
+      <div class="col-lg-4 product">
+
+        <img src="{{post.img_url}}" width="140px" height="140px" style="border-radius:50%;">
+        <h2 class="fw-normal">{{post.product_name}}</h2>
+        <p>₹ {{post.product_price}} <-- <span><del>₹ {{post.original_price}}</del></span></p>
+        <p><a class="btn btn-secondary" href="{{url_for('view',post_id=post.id)}}">View details »</a></p>
+        {% if current_user.id == 1 %}
+        <p><a class="btn btn-info" href="{{url_for('edit',post_id = post.id)}}">Edit</a></p>
+        <p><a class="btn btn-danger" href='{{url_for("delete",post_id=post.id)}}'>delete</a></p>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </div>
+</section>
+
+</main>
+

@@ -1,0 +1,19 @@
+{% include "base.html" %}
+ <section style="height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;">
+      <div class="px-4 py-5 my-5 text-center">
+
+    <h1 class="display-5 fw-bold text-body-emphasis" style="color:white" >Buy Whatever You Want</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4 bold" style="color:white">Buy the most elegant and gorgeous nike shoe shoes in our ChelCi franchisee.... at a very affordable price with greater quantity only at ChelCi </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          {% if not current_user.is_authenticated %}
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="window.location.href='{{url_for('login')}}'">Login</button>
+          {% endif %}
+          <button type="button" class="btn btn-outline-dark btn-lg px-4 " onclick="window.location.href='{{url_for('product')}}'" >Products</button>
+      </div>
+    </div>
+  </div>
+ </section>
